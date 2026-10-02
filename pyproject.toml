@@ -1,0 +1,29 @@
+[project]
+name = "qinba-teahouse-backend"
+version = "1.0.0"
+description = "秦小娲的秦巴茶舍 · 黑客松首期最小可演示方案后端服务"
+requires-python = ">=3.10"
+readme = "README.md"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --strict-markers"
+filterwarnings = [
+    "ignore::DeprecationWarning",
+]
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+exclude = ["app/data/*.json"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "C4", "SIM"]
+ignore = [
+    "E501",   # 行宽由黑盒格式化控制，中文注释容易超长
+    "B008",   # FastAPI 的 Depends() 默认值写法
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101"]
+"scripts/*" = ["T201"]
