@@ -235,3 +235,6 @@ async def chat(payload: ChatRequest):
             except httpx.HTTPError:
                 yield 'data: {"error":"DeepSeek is temporarily unavailable"}\n\n'
     return StreamingResponse(stream(),media_type='text/event-stream',headers={'Cache-Control':'no-cache','X-Accel-Buffering':'no'})
+
+# 将前端和 API 放在同一个服务下，便于通过一个公网地址访问。
+app.mount('/', StaticFiles(directory=SITE, html=True), name='site')

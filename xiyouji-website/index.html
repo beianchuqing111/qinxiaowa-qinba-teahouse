@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#EDF2F0">
 <title>硒游记 · 秦巴取硒之旅</title>
+<link rel="icon" href="assets/digitalHuman/qinxiaowa-avatar.jpg">
 <style>
 :root{
   --cream:#F7F0E5; --brown:#4A3325; --wood:#6B4A2F;
@@ -30,10 +31,14 @@ body{
   border-bottom:1px solid rgba(107,74,47,.14);
 }
 .topbar .logo{font-size:17px;font-weight:800;color:var(--brown);letter-spacing:.14em}
+.topbar .logo-img{height:34px;width:auto;display:block}
 .topbar .sub{font-size:10.5px;color:#9A8267;letter-spacing:.06em;margin-top:1px}
 
 /* ---- 地图 ---- */
-.mapwrap{position:relative;width:100%;line-height:0}
+.mapwrap{position:relative;width:100%;line-height:0;display:flex;flex-direction:column;min-height:100vh;min-height:100dvh}
+.mapinner{position:relative;width:100%;line-height:0}
+.mapinner{flex:0 0 auto}
+.maptail{flex:1 1 auto;width:100%;min-height:80px;object-fit:fill;display:block}
 .mapwrap img.map{width:100%;display:block}
 .mapwrap::after{
   content:"";position:absolute;inset:0;pointer-events:none;
@@ -53,7 +58,7 @@ body{
 }
 .plaque img{width:100%;display:block}
 .plaque:active{filter:drop-shadow(0 2px 5px rgba(74,51,37,.5)) brightness(.94)}
-.slot{width:12%;animation:pop .6s cubic-bezier(.2,.9,.3,1.3) both;animation-delay:var(--d,0s)}
+.slot{width:8%;animation:pop .6s cubic-bezier(.2,.9,.3,1.3) both;animation-delay:var(--d,0s)}
 @keyframes floaty{
   0%,100%{transform:translateY(0) rotate(-1.1deg)}
   50%    {transform:translateY(-9px) rotate(1.1deg)}
@@ -65,7 +70,12 @@ body{
 #vGoods{
   position:fixed;top:0;bottom:0;left:50%;width:100%;max-width:430px;
   transform:translateX(-50%) translateX(103%);
-  background:var(--cream);z-index:100;
+  background:
+    linear-gradient(180deg, rgba(247,242,230,.90) 0%, rgba(247,242,230,.70) 32%,
+      rgba(247,242,230,.62) 60%, rgba(247,242,230,.84) 100%),
+    url('assets/bg-welcome.jpg') center/cover no-repeat,
+    var(--cream);
+  z-index:100;
   overflow-y:auto;-webkit-overflow-scrolling:touch;
   transition:transform .3s cubic-bezier(.25,.8,.3,1);
   visibility:hidden;
@@ -133,7 +143,7 @@ body.lock{overflow:hidden}
       rgba(247,242,230,.90) 0%, rgba(247,242,230,.46) 24%,
       rgba(247,242,230,.26) 52%, rgba(247,242,230,.62) 78%,
       rgba(247,242,230,.95) 100%),
-    url('assets/map.jpg');
+    url('assets/bg-welcome.jpg');
   background-size:cover,cover;
   background-position:center center,center 34%;
   background-repeat:no-repeat,no-repeat;
@@ -141,21 +151,26 @@ body.lock{overflow:hidden}
 }
 #vWelcome.off{opacity:0;transform:translateX(-50%) translateY(-4%);pointer-events:none}
 #vWelcome.off .dh-wrap{opacity:0;transition:opacity .16s linear}
+#vWelcome .w-header{order:1}
+#vWelcome .w-stage{order:2}
+#vWelcome .w-dialogue{order:3}
+#vWelcome .w-actions{order:4}
 
-.w-header{position:relative;z-index:2;padding:calc(env(safe-area-inset-top,0px) + 22px) 20px 0;text-align:center}
+.w-header{position:relative;z-index:2;padding:calc(env(safe-area-inset-top,0px) + 12px) 16px 0;text-align:right}
+.w-brandLogo{width:148px;max-width:44vw;display:inline-block;filter:drop-shadow(0 5px 12px rgba(60,40,16,.28))}
 .w-brandPlate{
   display:inline-flex;flex-direction:column;align-items:center;gap:2px;
-  padding:8px 22px 10px;color:#4a3413;
+  padding:6px 14px 8px;color:#4a3413;
   background:linear-gradient(180deg,#fdf1d4 0%,var(--w-gold) 100%);
-  border:1px solid var(--w-gold-deep);border-radius:12px;
+  border:1px solid var(--w-gold-deep);border-radius:14px;
   box-shadow:0 6px 18px rgba(120,82,24,.30);
 }
-.w-brandName{margin:0;font-family:var(--w-font-title);font-size:27px;font-weight:700;letter-spacing:.3em;text-indent:.3em}
-.w-brandSub{font-size:11px;letter-spacing:.4em;text-indent:.4em;opacity:.8}
+.w-brandName{margin:0;font-family:var(--w-font-title);font-size:21px;font-weight:700;letter-spacing:.22em;text-indent:.22em}
+.w-brandSub{font-size:9px;letter-spacing:.28em;text-indent:.28em;opacity:.8}
 
 /* 卷轴式对白框：上下木轴 + 纸面 + 两侧卷边线 */
 .w-dialogue{
-  position:relative;z-index:2;margin:24px 20px 0;padding:15px 20px;
+  position:relative;z-index:4;margin:-135px 20px 8px;padding:12px 18px;
   display:flex;flex-direction:column;gap:6px;
   background-color:#FCF7EC;
   background-image:
@@ -178,8 +193,8 @@ body.lock{overflow:hidden}
 .w-lineTwo{animation-delay:.75s;color:var(--w-ink-soft)}
 @keyframes wFadeUp{to{opacity:1;transform:translateY(0)}}
 
-.w-stage{position:relative;z-index:1;flex:1;min-height:0;display:flex;align-items:flex-end;justify-content:center;padding:6px 0 0;animation:wRiseIn .9s ease-out both}
-.w-actions{position:relative;z-index:3;padding:8px 24px calc(env(safe-area-inset-bottom,0px) + 16px);text-align:center}
+.w-stage{position:relative;z-index:1;flex:1;min-height:0;display:flex;align-items:flex-end;justify-content:center;padding:0 0 2px;animation:wRiseIn .9s ease-out both}
+.w-actions{position:relative;z-index:5;padding:8px 24px calc(env(safe-area-inset-bottom,0px) + 16px);text-align:center}
 .w-continue{
   display:block;width:100%;padding:14px 0;
   font-family:var(--w-font-title);font-size:18px;letter-spacing:.32em;text-indent:.32em;color:#4a3413;
@@ -192,12 +207,12 @@ body.lock{overflow:hidden}
 .w-footnote{margin:10px 0 0;font-size:11px;line-height:1.6;color:var(--w-ink-soft);text-shadow:0 1px 0 rgba(255,253,247,.85)}
 
 /* 数字人舞台 */
-.dh-wrap{position:relative;display:flex;flex-direction:column;align-items:center;pointer-events:none;height:100%;width:100%;max-width:340px;animation:dhFloat 4.2s ease-in-out .9s infinite;will-change:transform}
+.dh-wrap{position:relative;display:flex;flex-direction:column;align-items:center;pointer-events:none;height:100%;width:100%;max-width:380px;animation:dhFloat 4.2s ease-in-out .9s infinite;will-change:transform}
 .dh-figureBox{width:100%;display:flex;justify-content:center;align-items:flex-end;flex:1;min-height:0}
 .dh-figure{width:100%;height:auto;display:block;object-fit:contain;user-select:none;filter:drop-shadow(0 10px 18px rgba(31,48,42,.22))}
 .dh-figureVideo{width:auto;height:100%;max-width:100%;object-fit:contain;filter:none;pointer-events:none}
 .dh-nameTag{
-  margin-top:-6px;padding:3px 12px;font-family:var(--w-font-title);font-size:12px;letter-spacing:.18em;
+  position:absolute;top:-11px;left:22px;z-index:6;padding:3px 12px;font-family:var(--w-font-title);font-size:12px;letter-spacing:.18em;
   color:var(--w-paper-soft);background:linear-gradient(180deg,var(--w-gold) 0%,var(--w-gold-deep) 100%);
   border-radius:999px;box-shadow:0 2px 8px rgba(31,48,42,.12);
 }
@@ -209,21 +224,25 @@ body.lock{overflow:hidden}
 }
 
 /* ============ 地图页底部常驻位：缩小后的秦小娲 + 卷轴对白 ============ */
+#vMap{position:relative;background:#dce9df}
+/* 底部空隙由 .maptail（地图底部镜像延展）填充，无需额外补色 */
 .dhDock{
   position:fixed;left:0;right:0;bottom:0;z-index:80;
   max-width:430px;margin:0 auto;
-  padding:0 14px env(safe-area-inset-bottom,0px);
-  display:flex;align-items:flex-end;gap:10px;
+  min-height:178px;padding:0 14px calc(env(safe-area-inset-bottom,0px) + 12px);
+  display:flex;align-items:center;justify-content:center;gap:10px;
   pointer-events:none;
   opacity:0;transition:opacity .45s ease .3s;
 }
 #vMap.ready .dhDock{opacity:1}
-.dhDock-figure{flex:none;height:142px;width:auto;margin-bottom:-8px;transform-origin:center bottom;
-  animation:dhFloat 4.6s ease-in-out .35s infinite;will-change:transform}
-.dhDock-figure video{height:100%;width:auto;display:block;
-  filter:drop-shadow(0 6px 13px rgba(31,48,42,.30));pointer-events:none}
+.dhDock-figure{flex:none;width:118px;height:118px;margin:0 -12px 0 0;position:relative;z-index:2;
+  border-radius:50%;overflow:hidden;transform-origin:center bottom;
+  animation:dhFloat 4.6s ease-in-out .35s infinite;will-change:transform;
+  -webkit-mask-image:linear-gradient(180deg,#000 72%,rgba(0,0,0,.5) 88%,transparent 100%);
+  mask-image:linear-gradient(180deg,#000 72%,rgba(0,0,0,.5) 88%,transparent 100%)}
+.dhDock-figure img{height:100%;width:100%;object-fit:cover;object-position:50% 26%;display:block;user-select:none;pointer-events:none}
 .dhDock-bubble{
-  position:relative;margin-bottom:44px;max-width:272px;
+  position:relative;margin-bottom:0;max-width:272px;
   padding:10px 15px;font-size:13px;line-height:1.7;color:var(--w-ink);
   background-color:#FCF7EC;
   background-image:linear-gradient(180deg,#FFFCF4 0%,#FAF3E4 100%);
@@ -239,6 +258,19 @@ body.lock{overflow:hidden}
 }
 .dhDock-bubble::before{top:-3px}
 .dhDock-bubble::after{bottom:-3px}
+
+/* 手机竖屏安全区：底部对话区不能盖住最下方牌匾 */
+.mapwrap{background:#dce9df}
+.dhDock{pointer-events:none}
+.dhDock-figure,.dhDock-bubble{pointer-events:auto}
+@media(max-width:380px){
+  .w-dialogue{margin-left:14px;margin-right:14px;padding-left:14px;padding-right:14px}
+  .w-line{font-size:13.5px}
+  .dh-wrap{max-width:330px}
+  .dhDock{min-height:164px;padding-left:8px;padding-right:8px;gap:6px}
+  .dhDock-figure{width:96px;height:96px;margin-right:-10px;margin-bottom:0}
+  .dhDock-bubble{max-width:calc(100% - 92px);font-size:12px;padding:8px 11px}
+}
 
 /* 牌匾进场动画：等欢迎页收起后再播 */
 .slot{animation-play-state:paused}
@@ -258,6 +290,10 @@ body.lock{overflow:hidden}
   visibility:hidden;
 }
 .chatPanel.on{transform:translateX(-50%);visibility:visible}
+/* 对话打开时的透明遮罩：点地图任意处关闭面板 */
+.chatMask{position:fixed;inset:0;z-index:140;background:transparent;
+  visibility:hidden;opacity:0;transition:opacity .25s}
+.chatMask.on{visibility:visible;opacity:1}
 .chatHead{display:flex;align-items:center;gap:10px;padding:12px 16px 10px;border-bottom:1px solid #E8DCC6}
 .chatAv{position:relative;width:44px;height:44px;flex:none;border-radius:50%;overflow:hidden;
   border:2px solid var(--w-gold);background:#fff;transition:box-shadow .25s}
@@ -306,13 +342,11 @@ body.lock{overflow:hidden}
   <!-- ============ 欢迎页（扫码后第一屏 · 数字人开场） ============ -->
   <section id="vWelcome">
     <header class="w-header">
-      <div class="w-brandPlate">
-        <h1 class="w-brandName">硒游记</h1>
-        <span class="w-brandSub">秦巴山水集</span>
-      </div>
+      <img class="w-brandLogo" src="assets/logo.png" alt="硒游记 · 秦巴优品 硒有安康">
     </header>
 
     <section class="w-dialogue" aria-label="秦小娲的开场白">
+      <span class="dh-nameTag">秦小娲</span>
       <p class="w-line">我是秦小娲。一座山挡风，一条江送水。</p>
       <p class="w-line w-lineTwo">安康的土就这样养出了硒。跟我去看看“硒游记”</p>
     </section>
@@ -326,7 +360,6 @@ body.lock{overflow:hidden}
                  autoplay muted playsinline preload="auto" disablepictureinpicture
                  aria-label="数字人秦小娲"></video>
         </div>
-        <span class="dh-nameTag">秦小娲</span>
       </div>
     </div>
 
@@ -341,58 +374,52 @@ body.lock{overflow:hidden}
 
   <!-- ============ 地图页 ============ -->
   <section id="vMap">
-    <div class="topbar">
-      <div>
-        <div class="logo">硒游记</div>
-        <div class="sub">秦巴取硒 · 六铺寻味</div>
-      </div>
-    </div>
     <div class="mapwrap" id="mapwrap">
-      <img class="map" src="assets/map.jpg" alt="秦巴取硒地图">
-      <div class="slot" style="left:36%;top:10%;--d:0.00s">
-        <button class="plaque" data-scene="xian" aria-label="西安">
-          <img src="assets/plaques/01.png" alt="西安">
+      <div class="mapinner">
+      <img class="map" src="assets/map-v2.jpg" alt="秦巴取硒地图">
+      <div class="slot" style="left:46%;top:8.5%;--d:0.00s;width:8.5%">
+        <button class="plaque" data-scene="xian" aria-label="安康好货">
+          <img src="assets/plaques/01.png" alt="安康好货">
         </button>
       </div>
-      <div class="slot" style="left:89%;top:26%;--d:0.42s">
+      <div class="slot" style="left:66%;top:21%;--d:0.42s;width:8.5%">
         <button class="plaque" data-scene="spring" aria-label="山泉瀑布">
           <img src="assets/plaques/02.png" alt="山泉瀑布">
         </button>
       </div>
-      <div class="slot" style="left:11%;top:34%;--d:0.84s">
+      <div class="slot" style="left:39%;top:30%;--d:0.84s;width:8.5%">
         <button class="plaque" data-scene="tea" aria-label="云雾茶园">
           <img src="assets/plaques/03.png" alt="云雾茶园">
         </button>
       </div>
-      <div class="slot" style="left:88%;top:38%;--d:1.26s">
+      <div class="slot" style="left:66%;top:39.5%;--d:1.26s;width:8.5%">
         <button class="plaque" data-scene="field" aria-label="林下魔芋田">
           <img src="assets/plaques/04.png" alt="林下魔芋田">
         </button>
       </div>
-      <div class="slot" style="left:11%;top:61%;--d:1.68s">
+      <div class="slot" style="left:40%;top:52.5%;--d:1.68s;width:8.5%">
         <button class="plaque" data-scene="kitchen" aria-label="村舍炊烟">
           <img src="assets/plaques/05.png" alt="村舍炊烟">
         </button>
       </div>
-      <div class="slot" style="left:89%;top:68%;--d:2.10s">
+      <div class="slot" style="left:53%;top:61%;--d:2.10s;width:8.5%">
         <button class="plaque" data-scene="store" aria-label="街边杂货铺">
           <img src="assets/plaques/06.png" alt="街边杂货铺">
         </button>
       </div>
-      <div class="slot" style="left:26%;top:86%;--d:2.52s">
+      <div class="slot" style="left:63%;top:72.5%;--d:2.52s;width:8.5%">
         <button class="plaque" data-scene="post" aria-label="江边驿站">
           <img src="assets/plaques/07.png" alt="江边驿站">
         </button>
       </div>
+      </div>
+      <img class="maptail" src="assets/map-tail.jpg" alt="">
     </div>
 
     <!-- 底部常驻位：缩小后的秦小娲 + 卷轴对白（点「继续」后飞到这里） -->
     <div class="dhDock" id="dhDock">
       <div class="dhDock-figure" id="dhDockFigure">
-        <video src="assets/digitalHuman/qinxiaowa-welcome.webm"
-               poster="assets/digitalHuman/qinxiaowa-welcome-poster.png"
-               autoplay muted loop playsinline preload="auto"
-               disablepictureinpicture aria-label="数字人秦小娲"></video>
+        <img src="assets/digitalHuman/qinxiaowa-avatar.jpg" alt="数字人秦小娲">
       </div>
       <div class="dhDock-bubble">
         点开任意牌匾，看看有哪些好物。
@@ -417,10 +444,11 @@ body.lock{overflow:hidden}
 
 <script>
 const GOODS = [{"i":1,"n":"13L安康硒谷饮用天然矿泉水1桶","p":"49.00","s":1775,"c":"spring","u":"https://shop135613115.m.youzan.com/wscgoods/detail/27appfypsp7dvwp"},{"i":2,"n":"13L安康硒谷饮用天然矿泉水2桶","p":"98.00","s":603,"c":"spring","u":"https://shop135613115.m.youzan.com/wscgoods/detail/2oelb3o3az01vqe"},{"i":3,"n":"13L安康硒谷饮用天然矿泉水1桶","p":"49.00","s":531,"c":"spring","u":"https://shop135613115.m.youzan.com/wscgoods/detail/3evyvyzkwcqnnpf"},{"i":4,"n":"安康硒谷饮用天然矿泉水330ml每箱*24瓶","p":"120.00","s":45,"c":"spring","u":"https://shop135613115.m.youzan.com/wscgoods/detail/3625wib75xjhvyk"},{"i":5,"n":"安康硒谷饮用天然矿泉水550ml每箱*20瓶","p":"120.00","s":32,"c":"spring","u":"https://shop135613115.m.youzan.com/wscgoods/detail/2xfrukx1kcygj1w"},{"i":6,"n":"椰子水246ml","p":"42.00","s":8,"c":"post","u":"https://shop135613115.m.youzan.com/wscgoods/detail/2787t79vaj76bet"},{"i":7,"n":"新椰汁246g(1*10)","p":"42.00","s":6,"c":"post","u":"https://shop135613115.m.youzan.com/wscgoods/detail/2oukkrzjox2yboz"},{"i":8,"n":"天然苏打水400ML(1*20)","p":"84.00","s":3,"c":"post","u":"https://shop135613115.m.youzan.com/wscgoods/detail/2g0t5etir5lznsr"},{"i":9,"n":"白桦树原汁320ml*6","p":"96.00","s":0,"c":"post","u":"https://shop135613115.m.youzan.com/wscgoods/detail/26zmfp3bnp6qbe5"},{"i":10,"n":"【广西北海红树林海鸭蛋】烤鸭蛋咸香美味 开袋即食 20枚装 鸭蛋 礼盒装","p":"49.90","s":154176,"c":"post","u":"https://shop135613115.m.youzan.com/wscgoods/detail/2fzl55doayjkjit"},{"i":11,"n":"秦食皇魔芋凉皮面西安麻酱面皮316g*2袋装代餐主食品","p":"21.90","s":1,"c":"field","u":"https://shop135613115.m.youzan.com/wscgoods/detail/2xn5k74kobtbnct"},{"i":12,"n":"秦食皇麻辣素毛肚健身餐方便速食魔芋粉丝面230g*2桶装","p":"21.90","s":1,"c":"field","u":"https://shop135613115.m.youzan.com/wscgoods/detail/3nx6aq8m724dvpp"},{"i":13,"n":"秦食皇官茶礼盒陕西泾阳茯茶黑茶茶砖泾渭茯茶茯砖茶礼品盒装","p":"629.00","s":0,"c":"tea","u":"https://shop135613115.m.youzan.com/wscgoods/detail/26x5x9op55eebj7"},{"i":14,"n":"秦食皇金花茯砖茶特级茯茶陕西泾阳特产黑茶手筑泾渭伏砖茶500g","p":"499.00","s":0,"c":"tea","u":"https://shop135613115.m.youzan.com/wscgoods/detail/2oji699w7ky9v3e"},{"i":15,"n":"秦食皇烤花馍烤花卷特产小吃烤馍办公室零食烤馒头速食早餐65g/罐","p":"20.90","s":0,"c":"kitchen","u":"https://shop135613115.m.youzan.com/wscgoods/detail/2os422wf6qf433j"},{"i":16,"n":"秦食皇“热辣滚烫”节日礼盒麻辣素毛肚230g*6桶装魔芋素毛肚","p":"78.00","s":0,"c":"field","u":"https://shop135613115.m.youzan.com/wscgoods/detail/2os5sd7lgmtab85"},{"i":17,"n":"秦食皇石子馍陕西特产手工干馍孜然麻辣味石头饼60g*2罐装办公室零食","p":"20.90","s":0,"c":"kitchen","u":"https://shop135613115.m.youzan.com/wscgoods/detail/360yf68kn7cb7wu"},{"i":18,"n":"秦食皇茯茶中秋礼盒高端茶叶礼品泾阳茯茶金花茯砖茶黑茶特级伏茶","p":"1039.00","s":0,"c":"tea","u":"https://shop135613115.m.youzan.com/wscgoods/detail/368cu0y4x7tgzqe"},{"i":19,"n":"秦食皇经典茯砖茶金花茯茶黑毛茶泾渭伏茶1000g手筑砖茶泾阳茶砖","p":"419.00","s":0,"c":"tea","u":"https://shop135613115.m.youzan.com/wscgoods/detail/3nifjr6chlfcjcq"},{"i":20,"n":"【安徽砀山】鲜梨熬制纯梨膏无添加一瓶200g","p":"59.90","s":4667,"c":"post","u":"https://shop135613115.m.youzan.com/wscgoods/detail/3nvygw9pfengjjv"},{"i":21,"n":"【一口带你走进新疆！】亩育万物 西域皇家卡瓦斯 1L*2瓶 蜂蜜发酵饮料，0脂肪低酒精，甘冽香甜，浓香醇厚","p":"29.90","s":2562,"c":"post","u":"https://shop135613115.m.youzan.com/wscgoods/detail/3njndamjobb8j71"},{"i":22,"n":"*【vc沙棘果汁  礼盒馈赠】山西吕梁野山坡沙棘汁350ml*10礼盒装","p":"68.00","s":1086,"c":"post","u":"https://shop135613115.m.youzan.com/wscgoods/detail/2xfs6xi21ozabdz"},{"i":23,"n":"【9.9抢❗️桑叶苦瓜芹菜面】每一口都是原始蔬菜的味道，绿色健康更安心，杂粮挂面，白条纯手工代餐健康早餐L","p":"9.90","s":425,"c":"post","u":"https://shop135613115.m.youzan.com/wscgoods/detail/3ntgkhf4t30cjmq"},{"i":24,"n":"方家铺子 本草银耳68g /罐","p":"39.90","s":250,"c":"post","u":"https://shop135613115.m.youzan.com/wscgoods/detail/3njmi7n0m1ahf8o"},{"i":25,"n":"【果肉多汁！不知火丑橘】丑八怪新鲜水果丑非耙耙水果丑柑橘子当季水果","p":"39.90","s":305,"c":"post","u":"https://shop135613115.m.youzan.com/wscgoods/detail/2xh0jcjlod75vgo"},{"i":26,"n":"fiboo黑咖啡0无蔗糖燃减即饮手冲速溶运动健身冷萃拿铁美式纯咖啡","p":"29.90","s":1787,"c":"post","u":"https://shop135613115.m.youzan.com/wscgoods/detail/1y5tmhqw3a9dv91"},{"i":27,"n":"老金磨方藻油黑芝麻饼高钙孕妇零食藻油黑芝麻片","p":"79.00","s":609,"c":"post","u":"https://shop135613115.m.youzan.com/wscgoods/detail/35w2ftvejzi43f8"},{"i":28,"n":"【纯鸡肉拒绝淀粉！风干鸡肉干】鲜肉风干鸡肉干，软硬适中鲜香美味不咸不腥，小罐便携，健身追剧解馋办公代餐小零食Y","p":"25.90","s":188,"c":"post","u":"https://shop135613115.m.youzan.com/wscgoods/detail/3ew03v7tef3lfxy"},{"i":29,"n":"金豆芽 金银花柚子汁","p":"29.90","s":0,"c":"post","u":"https://shop135613115.m.youzan.com/wscgoods/detail/2oh14tvcc19c31b"},{"i":30,"n":"【官方自营】清风厚柔金品M码4层80抽18包抽取式面巾纸BR10M7H18","p":"29.90","s":47709,"c":"store","u":"https://shop135613115.m.youzan.com/wscgoods/detail/3nps1smdylx8j8j"},{"i":31,"n":"【官方自营】清风联名抽纸M码4层80抽6包厚柔亲肤纸巾BR60MHSIP / BR60MHSIP1","p":"9.90","s":43795,"c":"store","u":"https://shop135613115.m.youzan.com/wscgoods/detail/3eur2epjf4v43vh"},{"i":32,"n":"【新华社推荐 30天试用】俊小白羟基磷灰石修护牙膏 根源修护 强塑屏障YM","p":"79.00","s":41510,"c":"store","u":"https://shop135613115.m.youzan.com/wscgoods/detail/364ou8mezfe9vgx"},{"i":33,"n":"【官方包邮】维达蓝色经典卷纸4层200g20卷（自然无香）有芯卫生纸","p":"69.90","s":38830,"c":"store","u":"https://shop135613115.m.youzan.com/wscgoods/detail/3nx5955bm5043ts"},{"i":34,"n":"品质升级款「9.9元到手6支！山姆同款」宽头家用6支装牙刷 男女通用成人软毛牙刷口腔护理","p":"9.90","s":31363,"c":"store","u":"https://shop135613115.m.youzan.com/wscgoods/detail/3ex6pttfzyyczyq"},{"i":35,"n":"【60包用一年❗️亲肤绵柔母婴抽纸】比卷纸更好用，加厚餐巾纸家用纸巾卫生纸擦手纸厕纸毛巾，直播引流爆款❗️粉丝专属特价清仓新年马年器","p":"6.90","s":21516,"c":"store","u":"https://shop135613115.m.youzan.com/wscgoods/detail/1yfopylopprmb4v"},{"i":36,"n":"E洁自动收口垃圾袋/不易穿漏/不脏手 提绳塑料袋垃圾袋","p":"9.90","s":20550,"c":"store","u":"https://shop135613115.m.youzan.com/wscgoods/detail/368c5dhw44n2rap"},{"i":37,"n":"10000397【品牌直发】2kg瓶！蓝月亮自然香亮白增艳洗衣液4斤装","p":"29.90","s":19620,"c":"store","u":"https://shop135613115.m.youzan.com/wscgoods/detail/2fvvru8ujfefnbo"},{"i":38,"n":"【GX】德佑75度酒精湿巾加厚家庭实惠大包装擦手40抽*4包/8包","p":"27.90","s":10029,"c":"store","u":"https://shop135613115.m.youzan.com/wscgoods/detail/1ybzc8kx5uuwzs1"},{"i":39,"n":"【3支牙膏+2支牙刷】舒客网红断货王 美白酵素牙膏120g*2支 小苏打牙膏160g 牙刷2支---新旧包装随机发","p":"59.60","s":4071,"c":"store","u":"https://shop135613115.m.youzan.com/wscgoods/detail/2ojiik4vl7n2bpm"},{"i":40,"n":"专享【9.9抢evb镂空浴室拖鞋】2025新款  浴室拖鞋 男女同款 四季可穿 室内居家 漏水速干防滑卫生间凉拖","p":"9.90","s":1962,"c":"store","u":"https://shop135613115.m.youzan.com/wscgoods/detail/36eh6799rremreg"},{"i":41,"n":"【供货特惠】水卫士浴室清洁剂 卫生间玻璃瓷砖水龙头洗漱台水垢清洁","p":"14.90","s":1525,"c":"store","u":"https://shop135613115.m.youzan.com/wscgoods/detail/2x8dfpbnzzqurcj"},{"i":42,"n":"🔥【6支装】舒客维C养护牙膏120克  舒客防蛀健白牙膏180克   养护牙龈 清新口气","p":"39.90","s":1109,"c":"store","u":"https://shop135613115.m.youzan.com/wscgoods/detail/3625qfxpj9mhvn7"},{"i":43,"n":"「19.9到手5提！单提1000张」蓝漂1000张大包悬挂式郁金香抽纸巾 实惠亲肤面巾纸居家日用卫生纸厨房用品","p":"9.90","s":432,"c":"store","u":"https://shop135613115.m.youzan.com/wscgoods/detail/27by86z1g3rg3eu"},{"i":44,"n":"热卖！「全家可用的面霜」全新3代 澳洲GM绵羊油ve霜滋养膏面霜身体乳250g/瓶保湿补水","p":"38.00","s":35381,"c":"store","u":"https://shop135613115.m.youzan.com/wscgoods/detail/3nps1zmknff430u"},{"i":45,"n":"贝德美bodorme蓝甘菊洗发水","p":"59.00","s":6827,"c":"store","u":"https://shop135613115.m.youzan.com/wscgoods/detail/2fzlbj47msvozn2"},{"i":46,"n":"【超值6支装】英国Cath Kidston 伦敦巴士护手霜礼盒 香氛萦绕 50g*6支（不支持拦截）","p":"69.00","s":0,"c":"store","u":"https://shop135613115.m.youzan.com/wscgoods/detail/35w1e9ox1ayb7w6"},{"i":47,"n":"全球购/芭妮兰zero卸妆膏，脸部眼唇深层清洁 养肤卸妆卸妆膏 敏感肌可用｜Banila CO/芭妮兰zero卸妆膏（规格：体验装7ml,正装100ml）","p":"39.00","s":2069,"c":"store","u":"https://shop135613115.m.youzan.com/wscgoods/detail/363fabdvotu5vzu"},{"i":48,"n":"【全球购·送迪奥甜心香水5ml+送礼袋】Dior迪奥口红烈艳蓝金唇膏新色丝绒哑光节日限量礼物送女友限定5支装礼盒『色号：#999哑光#720丝绒#772哑光#951哑光#735哑光』","p":"169.00","s":1629,"c":"store","u":"https://shop135613115.m.youzan.com/wscgoods/detail/2x9mh4y4iq2ir8h"},{"i":49,"n":"兰蔻清滢柔肤水 大粉水 400ml","p":"194.00","s":834,"c":"store","u":"https://shop135613115.m.youzan.com/wscgoods/detail/1y3dgig66j5lf9h"},{"i":50,"n":"预售【全球购】YSL圣罗兰浪漫自选礼盒 「自由至上香水50ml*1+正装口红2.2g*1+皮革迷你黑气垫5g*1」+礼盒礼袋·现货速达","p":"339.00","s":683,"c":"store","u":"https://shop135613115.m.youzan.com/wscgoods/detail/2x9n5xn66nglffp"},{"i":51,"n":"雅诗兰黛沁水养肤粉底液1C0  30ml 干皮救星（效期27.5月）","p":"221.00","s":662,"c":"store","u":"https://shop135613115.m.youzan.com/wscgoods/detail/3f4lb1e3lpjpvlb"},{"i":52,"n":"sk-II炫彩灯泡 小灯泡 50ml","p":"738.00","s":176,"c":"store","u":"https://shop135613115.m.youzan.com/wscgoods/detail/1ybxykiilnn43tf"},{"i":53,"n":"<双节同庆｜月圆奢礼>【全球购*送礼袋】HR赫莲娜绿宝瓶全新新版三件套装（水200ml+精华50ml+乳霜50ml）·现货速达","p":"1099.00","s":168,"c":"store","u":"https://shop135613115.m.youzan.com/wscgoods/detail/26x4povcsi44zz2"},{"i":54,"n":"阿玛尼红标权力粉底液3号色、2#号色新版30ml","p":"235.00","s":148,"c":"store","u":"https://shop135613115.m.youzan.com/wscgoods/detail/2xc1rwvq0k5n7dp"},{"i":55,"n":"SK-II神仙水230ml精华液sk2补水保湿精华水","p":"699.00","s":148,"c":"store","u":"https://shop135613115.m.youzan.com/wscgoods/detail/3627ajhsb4ybnfc"},{"i":56,"n":"MAC魅可口红哑光唇膏套装1.8g*2 支/3支","p":"136.00","s":54,"c":"store","u":"https://shop135613115.m.youzan.com/wscgoods/detail/26unoabr5t8g3gl"},{"i":57,"n":"范思哲VERSACE香恋水晶粉钻女士淡香水EDT50ml","p":"330.00","s":36,"c":"store","u":"https://shop135613115.m.youzan.com/wscgoods/detail/2xlx82m4bse4jxf"},{"i":58,"n":"资生堂清爽悦薇水150ml/瓶","p":"304.00","s":18,"c":"store","u":"https://shop135613115.m.youzan.com/wscgoods/detail/27bwhotypugs3gu"},{"i":59,"n":"爱马仕大地男士淡香水 50ml EDT","p":"455.00","s":18,"c":"store","u":"https://shop135613115.m.youzan.com/wscgoods/detail/2g21hjbhjww37bn"},{"i":60,"n":"kimscook304不锈钢无涂层小奶锅日式雪平锅宝宝辅食锅家用泡面汤锅","p":"109.00","s":0,"c":"store","u":"https://shop135613115.m.youzan.com/wscgoods/detail/36c0nvc26xjzn0x"},{"i":61,"n":"纸质水票兑换专区","p":"26.00","s":1354,"c":"spring","u":"https://shop135613115.m.youzan.com/wscgoods/detail/2g3ap6jzqc38zbq"},{"i":62,"n":"【亚duo同款温控被】Climatemp深睡控温被 贴肤柔软面料 棉被套 AB版","p":"169.00","s":796,"c":"store","u":"https://shop135613115.m.youzan.com/wscgoods/detail/3eoktxjce6c77e2"},{"i":63,"n":"月享套餐","p":"159.00","s":771,"c":"spring","u":"https://shop135613115.m.youzan.com/wscgoods/detail/3f4ksbwvtn84z6i"},{"i":64,"n":"欧莱雅第四代小黑瓶 黑精华液 青春密码肌底液75ml","p":"91.00","s":292,"c":"store","u":"https://shop135613115.m.youzan.com/wscgoods/detail/27aqekypxp6gjk0"},{"i":65,"n":"电子水票*13L桶装水*10桶","p":"—","s":39,"c":"spring","u":"https://shop135613115.m.youzan.com/wscgoods/detail/2x5xm63v23vsjlo"},{"i":66,"n":"纸质水票2本 100张","p":"4900.00","s":27,"c":"spring","u":"https://shop135613115.m.youzan.com/wscgoods/detail/26x585kvlxz5vq1"},{"i":67,"n":"电子水票*13L桶装水*20桶","p":"—","s":17,"c":"spring","u":"https://shop135613115.m.youzan.com/wscgoods/detail/3nqzpaitfsyqbz6"},{"i":68,"n":"纸质水票1本 50张","p":"2450.00","s":14,"c":"spring","u":"https://shop135613115.m.youzan.com/wscgoods/detail/2xdagxatvxseraq"},{"i":69,"n":"专享3盒特价【恒寿堂红糖姜茶】20年老配方 配料只有红糖、生姜、阿胶，清润无渣 ⁬暖身暖心 ‭红润气色⁫⁢‪⁭","p":"39.90","s":10,"c":"post","u":"https://shop135613115.m.youzan.com/wscgoods/detail/2fybrpgjc2uwz4o"},{"i":70,"n":"纸质水票4本 200张","p":"9800.00","s":1,"c":"spring","u":"https://shop135613115.m.youzan.com/wscgoods/detail/270u9b3rk2q8z8m"},{"i":71,"n":"纸质水票-13L桶装水*20桶","p":"980.00","s":0,"c":"spring","u":"https://shop135613115.m.youzan.com/wscgoods/detail/3nsaavgqos6sznd"},{"i":72,"n":"孩视宝护眼落地灯","p":"—","s":0,"c":"store","u":"https://shop135613115.m.youzan.com/wscgoods/detail/2g3a0fl3k20z7ba"}];
-const SCENES = {"xian":{"name":"安康好货","sub":"全部好物","plaque":1,"x":36,"y":10,"intro":"六个铺子的好物，一次看全。想从哪儿逛起，翻翻这块牌匾底下的货。"},"spring":{"name":"山泉瀑布","sub":"水源","plaque":2,"x":89,"y":26,"intro":"秦巴山里的泉，流出来就是安康人每天喝的水——硒是山里带的，不用后加。官方公开数据：硒含量稳定在 0.01–0.05mg/L，恰好顶满国标允许区间，pH 7.2–8.5 弱碱性。桶装、瓶装、按月送的水票，都在这一铺。"},"tea":{"name":"云雾茶园","sub":"茶社","plaque":3,"x":11,"y":34,"intro":"泾阳茯茶，陕西人喝了几百年的黑茶，茶砖里开出的“金花”是时间和手艺一起酿的。过节送一盒，比说一堆话都实在。"},"field":{"name":"林下魔芋田","sub":"田园","plaque":4,"x":88,"y":38,"intro":"魔芋长在秦巴山地的林下，是安康人吃了多年的山货。做成凉皮面、素毛肚，Q弹顶饱，追剧解馋正好。"},"kitchen":{"name":"村舍炊烟","sub":"灶房","plaque":5,"x":11,"y":61,"intro":"石子馍是陕西人的老手艺——把馍埋进烧热的石子里烙熟，外脆内软。烤花馍、石子馍扛饿顶事，办公室抽屉里放两罐正合适。"},"store":{"name":"街边杂货铺","sub":"日用 · 妆台","plaque":6,"x":89,"y":68,"intro":"走到这儿就是补给站了：纸巾牙具、洗护日用，旅途里顺手带一件。隔壁妆台上还有一排美妆，从绵羊油到国际大牌都有。"},"post":{"name":"江边驿站","sub":"驿铺","plaque":7,"x":26,"y":86,"intro":"驿站是货物集散的地方——广西的海鸭蛋、安徽的梨膏、新疆的卡瓦斯、山西的沙棘汁，都从这儿上岸。秦巴山货要走出去，外面的好东西也要运进来，这一铺两头都管。"}};
+const SCENES = {"xian":{"name":"安康好货","sub":"全部好物","plaque":1,"x":70,"y":13,"intro":"六个铺子的好物，一次看全。想从哪儿逛起，翻翻这块牌匾底下的货。"},"spring":{"name":"山泉瀑布","sub":"水源","plaque":2,"x":63,"y":26,"intro":"秦巴山里的泉，流出来就是安康人每天喝的水——硒是山里带的，不用后加。官方公开数据：硒含量稳定在 0.01–0.05mg/L，恰好顶满国标允许区间，pH 7.2–8.5 弱碱性。桶装、瓶装、按月送的水票，都在这一铺。"},"tea":{"name":"云雾茶园","sub":"茶社","plaque":3,"x":46,"y":38,"intro":"泾阳茯茶，陕西人喝了几百年的黑茶，茶砖里开出的“金花”是时间和手艺一起酿的。过节送一盒，比说一堆话都实在。"},"field":{"name":"林下魔芋田","sub":"田园","plaque":4,"x":72,"y":50,"intro":"魔芋长在秦巴山地的林下，是安康人吃了多年的山货。做成凉皮面、素毛肚，Q弹顶饱，追剧解馋正好。"},"kitchen":{"name":"村舍炊烟","sub":"灶房","plaque":5,"x":48,"y":60,"intro":"石子馍是陕西人的老手艺——把馍埋进烧热的石子里烙熟，外脆内软。烤花馍、石子馍扛饿顶事，办公室抽屉里放两罐正合适。"},"store":{"name":"街边杂货铺","sub":"日用 · 妆台","plaque":6,"x":56,"y":70,"intro":"走到这儿就是补给站了：纸巾牙具、洗护日用，旅途里顺手带一件。隔壁妆台上还有一排美妆，从绵羊油到国际大牌都有。"},"post":{"name":"江边驿站","sub":"驿铺","plaque":7,"x":81,"y":90,"intro":"驿站是货物集散的地方——广西的海鸭蛋、安徽的梨膏、新疆的卡瓦斯、山西的沙棘汁，都从这儿上岸。秦巴山货要走出去，外面的好东西也要运进来，这一铺两头都管。"}};
 
 function openGoods(){
   const g = document.getElementById('vGoods');
+  xyPush();
   g.scrollTop = 0;
   g.classList.add('on');
   document.body.classList.add('lock');
@@ -429,6 +457,20 @@ function closeGoods(){
   document.getElementById('vGoods').classList.remove('on');
   document.body.classList.remove('lock');
 }
+
+/* 面板挂历史状态：手机右滑/返回键 = 关闭面板，而不是退出页面 */
+var xyDepth = 0;
+function xyPush(){ xyDepth++; try{ history.pushState({xyPanel:1}, ''); }catch(e){} }
+function xyUiClose(closeFn){
+  closeFn();
+  if(xyDepth > 0){ xyDepth--; try{ history.back(); }catch(e){} }
+}
+window.addEventListener('popstate', function(){
+  var closed = false;
+  if(document.getElementById('chatPanel').classList.contains('on')){ chatClose(); closed = true; }
+  if(document.getElementById('vGoods').classList.contains('on')){ closeGoods(); closed = true; }
+  if(closed) xyDepth = Math.max(0, xyDepth - 1);
+});
 
 /* 商品列表 DOM 缓存：返回后再进同一铺子不再重建，无闪烁 */
 const listCache = {};
@@ -474,6 +516,21 @@ function renderList(list, countText, cacheKey, intro){
 (function(){
   var el = document.getElementById('dhVideo');
   if(!el) return;
+  /* iOS/Safari 不支持 WebM 透明通道（立绘会变白底框）：换静态透明 PNG */
+  var isIOS = /iP(hone|ad|od)/.test(navigator.userAgent) ||
+    (navigator.userAgent.indexOf('Mac') > -1 && 'ontouchend' in document);
+  window.__isIOS = isIOS;
+  if(isIOS){
+    var still = document.createElement('img');
+    still.id = 'dhVideo';
+    still.className = el.className;
+    still.src = 'assets/digitalHuman/qinxiaowa-welcome-still.png';
+    still.alt = '数字人秦小娲';
+    still.setAttribute('aria-label', '数字人秦小娲');
+    el.parentNode.replaceChild(still, el);
+    window.__dhDispose = function(){};
+    return;
+  }
   var disposed = false;
 
   function detach(){
@@ -523,7 +580,7 @@ document.getElementById('btnContinue').addEventListener('click', function(){
   var r1 = bigWrap ? bigWrap.getBoundingClientRect() : null;
 
   var bigV = document.getElementById('dhVideo');
-  if(bigV) bigV.pause();                       /* 大图停播，只留底部那位在动 */
+  if(bigV && typeof bigV.pause === 'function') bigV.pause();   /* 大图停播（iOS 是静态图，无 pause） */
 
   document.getElementById('vWelcome').classList.add('off');
   document.body.classList.remove('lock');
@@ -565,7 +622,7 @@ document.getElementById('mapwrap').addEventListener('click', e=>{
   if(window.__dhDispose) window.__dhDispose();
   openScene(b.dataset.scene);
 });
-document.getElementById('btnBack').addEventListener('click', closeGoods);
+document.getElementById('btnBack').addEventListener('click', function(){ xyUiClose(closeGoods); });
 document.addEventListener('click', e=>{
   const b = e.target.closest('.buy'); if(!b) return;
   window.open(b.dataset.u, '_blank');
@@ -573,6 +630,7 @@ document.addEventListener('click', e=>{
 </script>
 
 <!-- ============ 秦小娲对话面板 ============ -->
+<div class="chatMask" id="chatMask"></div>
 <div class="chatPanel" id="chatPanel">
   <div class="chatHead">
     <div class="chatAv" id="chatAv">
@@ -593,9 +651,7 @@ document.addEventListener('click', e=>{
 <!-- ============ 秦小娲对话 · 豆包 Doubao-Seed-2.0-mini ============ -->
 <script>
 const AI = {
-  url:'https://aiping.cn/api/v1/chat/completions',
-  key:'QC-df8db88a81a1e4a752d0df85eab92c59-f9681956a4733a34ca67c72cb6031434',
-  model:'Doubao-Seed-2.0-mini'
+  url:'/api/chat'
 };
 const AI_SYS = "你是「秦小娲」——女娲后人，安康好物推荐官，住在「硒游记」这张秦巴山水地图里。\n地图上有七个铺子：安康好货(总入口)、山泉瀑布(水源)、云雾茶园(茶社)、林下魔芋田(田园)、村舍炊烟(灶房)、街边杂货铺(日用+妆台)、江边驿站(驿铺·各地直采)。\n\n【你是谁】\n真诚、自然，像朋友聊天。说话简短，通常两三句说完。用年轻人的语言，但不装、不油腻。绝不学术腔，绝不广告腔。\n\n【关于硒，你可以大方讲的常识】\n- 硒是人体必需的微量元素之一；人体自己造不出来，主要从日常吃喝里摄取。\n- 中国存在一条低硒土壤带，很多地区土壤缺硒；天然富硒的产地比较稀少。\n- 安康在秦巴山区、汉江上游，八成以上土地富含硒，所以当地的谷物、茶、水天然带硒，不需要人为添加。\n- 正因为稀少，「产地天然富硒」和「后期人工添加」是两回事——这是安康好物最大的底气。\n- 如果用户追问「我该怎么补、补多少」，就建议他参考官方膳食指南或咨询医生，不要给个人健康方案。\n\n【两条底线（只限这一条线，线内的都放开讲）】\n1. 不做功效承诺：不说硒能防病、治病、抗癌、降三高、增强免疫力、延缓衰老，不说\"多吃就对身体怎么样\"。讲常识可以，做承诺不行。\n2. 不编造数字：官方公开数据里有的（硒含量、pH、水源）可以引用；其他没有的参数就说\"以瓶身标签和官方详情页为准\"，不要估一个数出来。\n\n【其他规矩】\n- 话题范围：安康好物、秦巴风物优先；旅游出行、美食、送礼建议、生活方式这类话题也欢迎——正常回答，并顺势推荐对应的安康好物（比如用户问去哪玩，就介绍安康的景点，顺便说说带什么伴手礼回家）。\n- 你无法联网：实时信息（今天的天气、新闻、汇率、比赛比分）要诚实说\"我暂时查不了实时信息，你查一下更准\"，绝不能编。\n- 纯粹无关的（写代码、写作业等）礼貌带回：\"这个我不太懂，我还是带你看看安康的好东西吧。\"\n- 你说的价格是快照参考价，实际以官方商城实时页面为准。\n- 不承接交易：不收钱、不代下单。用户想买，就提醒他点商品卡上的「去官网购买」。\n- 推荐商品一次最多 3 件。\n- 普通聊天 2-3 句；推荐时先一句理由，再列商品。\n- 推荐商品时，先说理由，然后另起一行，为每个推荐商品单独写一行标记，格式固定为 [[商品:序号]]（例如 [[商品:13]]），一行一个、最多 3 个；标记后面不要写商品名——页面会自动显示带图和购买链接的商品卡片。序号必须来自知识库。\n- 知识库里没有的产品信息就说不知道，绝不编造。\n\n【安康硒谷 · 官方公开数据（可以引用，注明以瓶身标签为准）】\n- 硒含量：稳定在 0.01–0.05 mg/L（品牌方公开资料）\n- 对照国标 GB 8537-2018《饮用天然矿泉水》：硒的界限指标为 ≥0.01 mg/L，限量指标为 ≤0.05 mg/L——也就是说 0.01–0.05 mg/L 正是国标允许的完整区间，安康硒谷把这个区间顶满了。这是数值事实，可以陈述；但不要引申\"所以喝这个更健康\"。\n- pH 值：7.2–8.5（弱碱性）\n- 水源地：秦岭凤凰山脉，水源经 40-50 米厚硒矿层渗透，岩层年代约 7500 万年\n- 除硒外还天然含有锶、锌、钙、镁等矿物质\n\n【在售商品知识库】\n【安康硒谷在售商品知识库 · 共72件】价格/库存为快照，以官方商城实时为准。\n[01] 13L安康硒谷饮用天然矿泉水1桶｜山泉瀑布(水源铺)｜¥49.00｜已售1775｜规格:13L / 桶（一次性桶，2 桶起售）｜卖点:天然矿泉水定位：非纯净水、非普通包装饮用水，主打「饮用天然矿泉水+天然富硒」产地概念；一次性桶设计：桶身与票面均标注「一次性桶·拒绝二次循环」，卫生更可控\n[02] 13L安康硒谷饮用天然矿泉水2桶｜山泉瀑布(水源铺)｜¥98.00｜已售603｜规格:13L 饮用天然矿泉水 × 2 桶｜卖点:标签：会员专享/首单体验产品；13L一次性桶装饮用水，蓝色提手+蓝色桶盖\n[03] 13L安康硒谷饮用天然矿泉水1桶｜山泉瀑布(水源铺)｜¥49.00｜已售531｜规格:13L 饮用天然矿泉水 1 桶｜卖点:13L一次性桶装，蓝色提手方便提拎；桶身标注「安康硒谷饮用天然矿泉水」，属水票核销的主商品\n[04] 安康硒谷饮用天然矿泉水330ml每箱*24瓶｜山泉瀑布(水源铺)｜¥120.00｜已售45｜规格:330ml × 24 瓶（膜包整箱）｜卖点:小瓶量规格，适合会议、接待、宴会、车载等轻饮用场景；膜包整箱出货，搬运方便、单瓶成本低（约¥5.00/瓶）\n[05] 安康硒谷饮用天然矿泉水550ml每箱*20瓶｜山泉瀑布(水源铺)｜¥120.00｜已售32｜规格:550ml × 20 瓶（膜包整箱）｜卖点:550ml是瓶装水最通用容量，覆盖户外、会议、家庭日常；与330ml同价（均¥120/箱），选购逻辑即「容量换数量」\n[06] 椰子水246ml｜江边驿站(驿铺·各地直采)｜¥42.00｜已售8｜规格:椰子水 246ml × 8 瓶（礼盒装）｜卖点:原料卖点：100%东南亚椰源；营养主张：0脂肪、0胆固醇、含天然电解质\n[07] 新椰汁246g(1*10)｜江边驿站(驿铺·各地直采)｜¥42.00｜已售6｜规格:246g × 10 瓶（2 件起售）｜卖点:工艺卖点：鲜椰生榨·无菌冷灌（瓶身直印）；卖点字段为「无菌灌装鲜椰汁」，工艺与安全双重强调\n[08] 天然苏打水400ML(1*20)｜江边驿站(驿铺·各地直采)｜¥84.00｜已售3｜规格:400ml × 20 瓶｜卖点:四大零负担主张：0糖/0卡/0负担/0添加；pH值8.8±0.2天然弱碱（包装标注），主打天然弱碱性\n[09] 白桦树原汁320ml*6｜江边驿站(驿铺·各地直采)｜¥96.00｜已售0｜规格:320ml × 6 瓶｜卖点:NFC100%原汁：非浓缩还原，无额外添加，是该品类最核心的价值主张；产地故事：源自小兴安岭原始林区，强化原料稀缺感\n[10] 【广西北海红树林海鸭蛋】烤鸭蛋咸香美味 开袋即食 20枚装 鸭蛋 礼盒装｜江边驿站(驿铺·各地直采)｜¥49.90｜已售154176｜规格:广西北海红树林海鸭蛋（烤鸭蛋）20 枚装 礼盒装｜卖点:产地背书：广西北海红树林海鸭蛋，礼盒文案「天赐良物·心诚手作」；工艺卖点：海湾放养、古法腌制\n[11] 秦食皇魔芋凉皮面西安麻酱面皮316g*2袋装代餐主食品｜林下魔芋田(田园)｜¥21.90｜已售1｜规格:316g × 2 袋（魔芋凉皮面 · 西安麻酱面皮）｜卖点:西安麻酱面皮风味，陕西地域特色主食；魔芋制凉皮，主打低脂低卡、Q弹爽口（列表卖点字段）\n[12] 秦食皇麻辣素毛肚健身餐方便速食魔芋粉丝面230g*2桶装｜林下魔芋田(田园)｜¥21.90｜已售1｜规格:230g × 2 桶（麻辣素毛肚）｜卖点:口感主张：口感筋道、脆爽弹牙（主视觉用「筋」字强化）；桶装方便速食，开盖即食/冲泡即食\n[13] 秦食皇官茶礼盒陕西泾阳茯茶黑茶茶砖泾渭茯茶茯砖茶礼品盒装｜云雾茶园(茶社)｜¥629.00｜已售0｜规格:1000g 精品茯砖茶 + 茶针（木盒礼盒装）｜卖点:礼盒形态：木质礼盒+黄色绸缎内衬+随附茶针，主打礼品场景；规格1000g精品茯砖茶\n[14] 秦食皇金花茯砖茶特级茯茶陕西泾阳特产黑茶手筑泾渭伏砖茶500g｜云雾茶园(茶社)｜¥499.00｜已售0｜规格:金花茯砖茶 500g（特级）｜卖点:卖点主张：金花茂盛、菌香四溢（「金花」即茯茶特有的冠突散囊菌）；陕西泾阳特产黑茶，手筑泾渭茯砖茶，强调传统手筑工艺\n[15] 秦食皇烤花馍烤花卷特产小吃烤馍办公室零食烤馒头速食早餐65g/罐｜村舍炊烟(灶房)｜¥20.90｜已售0｜规格:烤花馍 65g / 罐｜卖点:陕西特色·香酥可口（主标）；口感主张：一口酥脆美味；花馍为层叠花纹造型，罐装保存\n[16] 秦食皇“热辣滚烫”节日礼盒麻辣素毛肚230g*6桶装魔芋素毛肚｜林下魔芋田(田园)｜¥78.00｜已售0｜规格:230g × 6 桶（热辣滚烫礼盒）｜卖点:礼盒定位：「热辣滚烫」节日礼盒，橙色礼盒+6桶装组合；产品为麻辣素毛肚（魔芋制品），桶装即食\n[17] 秦食皇石子馍陕西特产手工干馍孜然麻辣味石头饼60g*2罐装办公室零食｜村舍炊烟(灶房)｜¥20.90｜已售0｜规格:石子馍（石头饼）60g × 2 罐｜卖点:工艺卖点：文火慢烤·焦香酥脆；陕西特产手工干馍，石头饼形态（表面凹凸石烙痕迹）\n[18] 秦食皇茯茶中秋礼盒高端茶叶礼品泾阳茯茶金花茯砖茶黑茶特级伏茶｜云雾茶园(茶社)｜¥1039.00｜已售0｜规格:精品茯茶礼盒（高端礼盒套装）：金花茯砖茶 × 2 罐 + 茶壶 + 茶杯 × 2 + 茶夹｜卖点:礼盒内容：金花茯砖茶2罐+煮茶壶1把+玻璃茶杯2只+茶夹1支，属「高端礼盒套装」；年份卖点：十年陈茶（页面标「十年陈茶馥郁茶香」）\n[19] 秦食皇经典茯砖茶金花茯茶黑毛茶泾渭伏茶1000g手筑砖茶泾阳茶砖｜云雾茶园(茶社)｜¥419.00｜已售0｜规格:经典茯砖茶 1000g（手筑砖茶）｜卖点:1000g大规格手筑砖茶，陕西泾阳茶砖（泾渭茯茶）；茶砖截面可见金花与茶梗，主打金花茯茶/黑毛茶原料\n[20] 【安徽砀山】鲜梨熬制纯梨膏无添加一瓶200g｜江边驿站(驿铺·各地直采)｜¥59.90｜已售4667｜规格:200g / 瓶（纯梨膏）｜卖点:产地背书：安徽砀山「中国梨都」，页面以果园实拍与产地场景强化原产地道地性；纯梨膏·鲜梨慢熬，主打无添加、配料干净\n[21] 【一口带你走进新疆！】亩育万物 西域皇家卡瓦斯 1L*2瓶 蜂蜜发酵饮料，0脂肪低酒精，甘冽香甜，浓香醇厚｜江边驿站(驿铺·各地直采)｜¥29.90｜已售2562｜规格:1L × 2 瓶（带提手大瓶）｜卖点:新疆正宗卡瓦斯，蜂蜜天然发酵饮料；0脂肪、超低酒精（标题标「低酒精」）\n[22] *【vc沙棘果汁  礼盒馈赠】山西吕梁野山坡沙棘汁350ml*10礼盒装｜江边驿站(驿铺·各地直采)｜¥68.00｜已售1086｜规格:沙棘汁 350ml × 10 礼盒装｜卖点:主标：小果沙棘·鲜果冷榨·口感醇厚；原料为小果沙棘，采用冷榨工艺保留鲜果风味\n[23] 【9.9抢❗️桑叶苦瓜芹菜面】每一口都是原始蔬菜的味道，绿色健康更安心，杂粮挂面，白条纯手工代餐健康早餐L｜江边驿站(驿铺·各地直采)｜¥9.90｜已售425｜规格:蔬菜杂粮挂面｜卖点:三种蔬菜入面：桑叶、苦瓜、芹菜，主打「每一口都是原始蔬菜的味道」；面条天然翠绿色，视觉强化「绿色健康」\n[24] 方家铺子 本草银耳68g /罐｜江边驿站(驿铺·各地直采)｜¥39.90｜已售250｜规格:68g / 罐｜卖点:「中华老字号」品牌资质背书（页面反复强调ChinaTime-honoredBrand）；本草银耳，本草培育+多种健康食材培育，珍贵银耳菌种，主打「耳中精品」\n[25] 【果肉多汁！不知火丑橘】丑八怪新鲜水果丑非耙耙水果丑柑橘子当季水果｜江边驿站(驿铺·各地直采)｜¥39.90｜已售305\n[26] fiboo黑咖啡0无蔗糖燃减即饮手冲速溶运动健身冷萃拿铁美式纯咖啡｜江边驿站(驿铺·各地直采)｜¥29.90｜已售1787｜规格:固体饮料 · 冻干即溶咖啡（胶囊杯）｜卖点:形态卖点：固体饮料/冻干即溶咖啡（FreezeDriedInstantCoffee），独立胶囊杯包装，「清晨咖MorningCoffee」；功能主张：「咖啡添助力，高燃动、高效练」\n[27] 老金磨方藻油黑芝麻饼高钙孕妇零食藻油黑芝麻片｜江边驿站(驿铺·各地直采)｜¥79.00｜已售609｜规格:藻油黑芝麻饼（高钙孕妇零食）｜卖点:核心主张：「自带DHA的芝麻饼」；营养数据：每盒含DHA396mg\n[28] 【纯鸡肉拒绝淀粉！风干鸡肉干】鲜肉风干鸡肉干，软硬适中鲜香美味不咸不腥，小罐便携，健身追剧解馋办公代餐小零食Y｜江边驿站(驿铺·各地直采)｜¥25.90｜已售188｜规格:小罐便携装｜卖点:工艺主张：真风干，拒绝油炸卤制；恒温慢烤、析出油脂；口感描述：肉质紧实、香而不腻；软硬适中、鲜香美味、不咸不腥\n[29] 金豆芽 金银花柚子汁｜江边驿站(驿铺·各地直采)｜¥29.90｜已售0\n[30] 【官方自营】清风厚柔金品M码4层80抽18包抽取式面巾纸BR10M7H18｜街边杂货铺(日用+妆台)｜¥29.90｜已售47709｜规格:4层80抽 × 18包，M码，80抽/320张｜卖点:主标「蓬厚亲肤一触柔软」，到手共18包；绒感压花（FLUFFY-TOUCH），触感卖点\n[31] 【官方自营】清风联名抽纸M码4层80抽6包厚柔亲肤纸巾BR60MHSIP / BR60MHSIP1｜街边杂货铺(日用+妆台)｜¥9.90｜已售43795｜规格:4层80抽 × 6包，M码，480抽/1920张｜卖点:清风×WiggleWiggle联名软抽（另有清风×红山动物园FORESTZOO联名版），焕新上市；4层蓬厚/4层加厚：柔的厚实，湿水不易破，干湿两用\n[32] 【新华社推荐 30天试用】俊小白羟基磷灰石修护牙膏 根源修护 强塑屏障YM｜街边杂货铺(日用+妆台)｜¥79.00｜已售41510｜规格:羟基磷灰石修护牙膏（薄荷清凉）｜卖点:核心成分：介孔羟基磷灰石nHAP-Pro，标注「99%+高纯度」「牙同源成分」；核心卖点：「60秒速效」封堵牙小管——配牙本质修护电镜图像（使用前vs密集修护1分钟后）\n[33] 【官方包邮】维达蓝色经典卷纸4层200g20卷（自然无香）有芯卫生纸｜街边杂货铺(日用+妆台)｜¥69.90｜已售38830｜规格:4层200g × 20卷（自然无香，有芯卫生纸）｜卖点:维达蓝色经典系列，主打「经典陪伴家庭之选」，标注「线下商超同款」；4层超韧大升级；超韧厚实、湿水不易破\n[34] 品质升级款「9.9元到手6支！山姆同款」宽头家用6支装牙刷 男女通用成人软毛牙刷口腔护理｜街边杂货铺(日用+妆台)｜¥9.90｜已售31363｜规格:宽头家用软毛牙刷 6 支装｜卖点:主标：纤密软毛、宽头设计；「山姆同款」背书；高密植毛技术，柔软舒适；6支超软牙刷家庭装（6PCSTOOTHBRUSH）\n[35] 【60包用一年❗️亲肤绵柔母婴抽纸】比卷纸更好用，加厚餐巾纸家用纸巾卫生纸擦手纸厕纸毛巾，直播引流爆款❗️粉丝专属特价清仓新年马年器｜街边杂货铺(日用+妆台)｜¥6.90｜已售21516｜规格:亲肤绵柔母婴抽纸，共 60 包（常规款）｜卖点:主标「60包用一年」，以超高包数做囤货性价比；湿水更好用（加厚餐巾纸，比卷纸更好用）\n[36] E洁自动收口垃圾袋/不易穿漏/不脏手 提绳塑料袋垃圾袋｜街边杂货铺(日用+妆台)｜¥9.90｜已售20550｜规格:自动收口垃圾袋（提绳塑料袋）｜卖点:三大卖点：不易穿漏/能装约22斤/不脏手；自动收口+提绳设计，提拉即封口，避免手接触垃圾\n[37] 10000397【品牌直发】2kg瓶！蓝月亮自然香亮白增艳洗衣液4斤装｜街边杂货铺(日用+妆台)｜¥29.90｜已售19620｜规格:2kg / 瓶（4 斤装）· 深层洁净护理洗衣液（亮白增艳）｜卖点:三大功能卖点（页面编号呈现）：①护色增艳——保护衣物原色彩，持续焕亮衣物色彩；②深层清洁——深层去渍，防止污渍再附着；③自然清香——释放小清新；产品标注「低粘速溶·低泡易漂」\n[38] 【GX】德佑75度酒精湿巾加厚家庭实惠大包装擦手40抽*4包/8包｜街边杂货铺(日用+妆台)｜¥27.90｜已售10029｜规格:75% 酒精消毒湿巾 40 片/包（40抽×4包 / 8包）｜卖点:主标「一抹杀菌洁净安心」，标注有效杀菌率99.9%；核心成分：75%酒精（GB/T26373乙醇消毒剂标准）\n[39] 【3支牙膏+2支牙刷】舒客网红断货王 美白酵素牙膏120g*2支 小苏打牙膏160g 牙刷2支---新旧包装随机发｜街边杂货铺(日用+妆台)｜¥59.60｜已售4071｜规格:美白酵素牙膏120g×2支 + 小苏打牙膏160g + 牙刷2支（3支牙膏+2支牙刷）｜卖点:品牌定位语：更懂东方人的口腔美护；酵素·美白：7天美白不伤牙（标注「天然高活」），主打高活美白专利+3D活效美白\n[40] 专享【9.9抢evb镂空浴室拖鞋】2025新款  浴室拖鞋 男女同款 四季可穿 室内居家 漏水速干防滑卫生间凉拖｜街边杂货铺(日用+妆台)｜¥9.90｜已售1962｜规格:镂空浴室拖鞋（2025 新款，男女同款）｜卖点:核心场景卖点：为「浴」而生，告别积水；镂空排水结构：鞋底大面积孔洞，洗澡后快速排水、速干防滑\n[41] 【供货特惠】水卫士浴室清洁剂 卫生间玻璃瓷砖水龙头洗漱台水垢清洁｜街边杂货铺(日用+妆台)｜¥14.90｜已售1525｜规格:浴室清洁剂（植物基除垢）｜卖点:主标「多种植萃除垢力拉满」，产品为植物基除垢配方；四重成分卖点：甘薯多糖发酵衍生物（红薯提取的表面活性成分）、茶花提取物（单宁酸脱落水垢、防止新水垢生成）、椰子油衍生物（强清洁力与渗透性，有效分解油囊）、烷基糖苷APG（玉米、土豆中提取的表面活性成分）\n[42] 🔥【6支装】舒客维C养护牙膏120克  舒客防蛀健白牙膏180克   养护牙龈 清新口气｜街边杂货铺(日用+妆台)｜¥39.90｜已售1109｜规格:防蛀健白牙膏 180g × 3 支 + 维C养护牙膏 120g × 3 支（共 6 支）｜卖点:组合卖点：防蛀健白180g×3支+维C养护120g×3支，日常价¥99.9，主打「防蛀养龈多效组合」；防蛀健白三大功效：①防蛀固齿（含氟配方，防止蛀牙、坚固牙齿）；②自然洁白（有效去除牙渍，美白牙齿）；③清新口气（植物提取柠檬&薄荷精华）\n[43] 「19.9到手5提！单提1000张」蓝漂1000张大包悬挂式郁金香抽纸巾 实惠亲肤面巾纸居家日用卫生纸厨房用品｜街边杂货铺(日用+妆台)｜¥9.90｜已售432｜规格:1000 张/提，5 提（19.9 元到手 5 提）｜卖点:卖点标签：云柔亲肤面巾纸·干湿两用·柔韧舒适（FacialTissue,floralscent）；悬挂式设计：可以「挂在墙上」的纸巾，向下抽取更便捷\n[44] 热卖！「全家可用的面霜」全新3代 澳洲GM绵羊油ve霜滋养膏面霜身体乳250g/瓶保湿补水｜街边杂货铺(妆台区)｜¥38.00｜已售35381｜规格:250g / 罐（第三代新版）｜卖点:3代全新升级配方，主打「持久水润KO干燥肌」；48小时持久保湿（瓶身印moisturisesfor48hours）\n[45] 贝德美bodorme蓝甘菊洗发水｜街边杂货铺(日用+妆台)｜¥59.00｜已售6827｜规格:蓝甘菊洗发露（蓬松型）等，买即赠儿童护发素20ml｜卖点:儿童头皮专研：改善头油、头痒、毛躁、细软塌四类问题；产品标注「儿童化妆品」金标认证，品牌主张「把自然还给孩子」「ScientificFormulasProvenbyDoctors」\n[46] 【超值6支装】英国Cath Kidston 伦敦巴士护手霜礼盒 香氛萦绕 50g*6支（不支持拦截）｜街边杂货铺(妆台区)｜¥69.00｜已售0\n[47] 全球购/芭妮兰zero卸妆膏，脸部眼唇深层清洁 养肤卸妆卸妆膏 敏感肌可用｜Banila CO/芭妮兰zero卸妆膏（规格：体验装7ml,正装100ml）｜街边杂货铺(妆台区)｜¥39.00｜已售2069｜规格:净柔卸妆膏 clean it zero（original）100ml 正装 / 7ml 体验装｜卖点:cleanitzero经典款卸妆膏（cleansingbalmoriginal），主打「卸妆0负担」；植物精萃、养肤卸妆，称「千万达人口碑挚爱」\n[48] 【全球购·送迪奥甜心香水5ml+送礼袋】Dior迪奥口红烈艳蓝金唇膏新色丝绒哑光节日限量礼物送女友限定5支装礼盒『色号：#999哑光#720丝绒#772哑光#951哑光#735哑光』｜街边杂货铺(妆台区)｜¥169.00｜已售1629｜规格:烈艳蓝金唇膏 5 支装礼盒（#999哑光 / #720丝绒 / #772哑光 / #951哑光 / #735哑光）｜卖点:五支装礼盒：烈艳蓝金唇膏5支，色号组合为#999哑光、#720丝绒、#772哑光、#951哑光、#735哑光（经典红+豆沙/丝绒色系）；礼盒形态：金色繁花纹样红色礼盒+同款DIOR礼袋，开盖陈列5支口红\n[49] 兰蔻清滢柔肤水 大粉水 400ml｜街边杂货铺(妆台区)｜¥194.00｜已售834｜规格:清滢柔肤水（TONIQUE CONFORT 大粉水）400ml｜卖点:核心肤感主张：润而不腻、水润亲肤；质地卖点：透明水状质地，清爽易吸收\n[50] 预售【全球购】YSL圣罗兰浪漫自选礼盒 「自由至上香水50ml*1+正装口红2.2g*1+皮革迷你黑气垫5g*1」+礼盒礼袋·现货速达｜街边杂货铺(妆台区)｜¥339.00｜已售683｜规格:自由之水香水50ml + 正装口红2.2g + 皮革迷你黑气垫5g + 礼盒礼袋（含拉菲草）｜卖点:组合内容：YSL自由之水（Libre）经典版香水50ml+正装口红2.2g+皮革迷你黑气垫5g，含礼盒礼袋；叠加YSLNO.1爆款气垫与NO.1断货色，用「品牌销量榜第一」做产品背书\n[51] 雅诗兰黛沁水养肤粉底液1C0  30ml 干皮救星（效期27.5月）｜街边杂货铺(妆台区)｜¥221.00｜已售662｜规格:沁水养肤粉底液 30ml（1C0 61号 Cool Porcelain）｜卖点:色号体系卖点：10大色号·亚洲定制，按「冷调Cool/中性调Neutral/暖调Warm」×「白皙/自然/健康肤色」交叉划分；主推色号标注HOT：1C061号CoolPorcelain（白皙·冷调）、2C063号CoolVanilla（自然·冷调）\n[52] sk-II炫彩灯泡 小灯泡 50ml｜街边杂货铺(妆台区)｜¥738.00｜已售176｜规格:炫彩灯泡（GENOPTICS ULTRAURA ESSENCE）小灯泡 50ml｜卖点:珠光幻彩渐变瓶身（粉色偏光），视觉上呼应「灯泡/发光」的产品概念；SK-II美白线精华代表作，主打提亮肤色\n[53] <双节同庆｜月圆奢礼>【全球购*送礼袋】HR赫莲娜绿宝瓶全新新版三件套装（水200ml+精华50ml+乳霜50ml）·现货速达｜街边杂货铺(妆台区)｜¥1099.00｜已售168｜规格:绿宝瓶三件套：新肌水200ml + 精华50ml + 轻乳霜｜卖点:HR赫莲娜绿宝瓶（POWERCELLSKINMUNITY）全新新版三件套装，礼盒标注EXCLUSIVEOFFER；新肌水（200ml）：主打根源修护、高能焕亮，称「赫莲娜王牌肌底修护精华水」，宣称+15.6%肌肤更焕亮\n[54] 阿玛尼红标权力粉底液3号色、2#号色新版30ml｜街边杂货铺(妆台区)｜¥235.00｜已售148｜规格:红标权力粉底液 power fabric+ 30ml（2# / 3# 色号）｜卖点:产品名：powerfabric+权力粉底液，英文标注ultralongwearweightlessmattefoundation（超长持妆·轻盈·哑光）；带SPF20防晒值\n[55] SK-II神仙水230ml精华液sk2补水保湿精华水｜街边杂货铺(妆台区)｜¥699.00｜已售148｜规格:神仙水（FACIAL TREATMENT ESSENCE）230ml｜卖点:双重功效主张：强韧修护——显著减少干燥泛红，肌肤更稳定；深层修护——修护由外界或内因产生的肌肤问题；核心成分为PITERA（瓶身标注）\n[56] MAC魅可口红哑光唇膏套装1.8g*2 支/3支｜街边杂货铺(妆台区)｜¥136.00｜已售54｜规格:哑光唇膏小样套装 1.8g × 2 支 / 3 支（色号 #666、#683）｜卖点:MATTELIPSTICKROUGEÀLÈVRES哑光唇膏，小样规格1.8g；套装形式：1.8g×2支（页面另有3支装），主推色号#666/#683\n[57] 范思哲VERSACE香恋水晶粉钻女士淡香水EDT50ml｜街边杂货铺(妆台区)｜¥330.00｜已售36｜规格:香恋水晶（BRIGHT CRYSTAL）粉钻女士淡香水 EDT 50ml｜卖点:水晶切割造型瓶盖+粉色香水液体，瓶身印VERSACEBRIGHTCRYSTAL；定位为品牌经典女香（香恋水晶/粉钻），礼赠属性强\n[58] 资生堂清爽悦薇水150ml/瓶｜街边杂货铺(妆台区)｜¥304.00｜已售18｜规格:悦薇珀翡亮肤水（White Revitalizing Softener）150ml｜卖点:核心功效主张：深润补水；卖点描述：亲肤成分，高吸收强韧呵护，深入润养肌肤\n[59] 爱马仕大地男士淡香水 50ml EDT｜街边杂货铺(妆台区)｜¥455.00｜已售18｜规格:50ml EDT 男士淡香水｜卖点:核心调性描述：清新明亮、稳重内敛；木质调男士淡香水，瓶身为经典方形厚玻璃+黑色瓶盖\n[60] kimscook304不锈钢无涂层小奶锅日式雪平锅宝宝辅食锅家用泡面汤锅｜街边杂货铺(日用+妆台)｜¥109.00｜已售0\n[61] 纸质水票兑换专区｜山泉瀑布(水源铺)｜¥26.00｜已售1354｜规格:纸质水票兑换专区（13L 桶装水水票）｜卖点:票面统一元素：安康硒谷·自然天成、天然富硒、一次性桶·拒绝二次循环、净含量13L、面额「壹桶」；加盖「陕西硒谷产业发展有限公司水票专用章」方为有效\n[62] 【亚duo同款温控被】Climatemp深睡控温被 贴肤柔软面料 棉被套 AB版｜街边杂货铺(日用+妆台)｜¥169.00｜已售796｜规格:AB 版双面双色（贴肤柔软面料 + 可拆洗棉被套）｜卖点:「亚朵同款」酒店背书，降低陌生品类的决策成本；吊牌直印「航天服温控黑科技」，技术主张明确\n[63] 月享套餐｜山泉瀑布(水源铺)｜¥159.00｜已售771｜规格:4 桶 13L + 1 箱 330ml 膜包（组合装）｜卖点:按「一个月用水量」设计的家庭月享套餐，避免反复下单；桶装+瓶装双形态一次配齐：4桶13L覆盖日常饮用与做饭，1箱330ml膜包用于外出携带/办公\n[64] 欧莱雅第四代小黑瓶 黑精华液 青春密码肌底液75ml｜街边杂货铺(妆台区)｜¥91.00｜已售292｜规格:第四代小黑瓶 / 青春密码肌底液 75ml（保税仓）｜卖点:渠道背书：保税仓发货，主打正品与价格优势；代际升级卖点：突出「第四代」，用代际差异制造换新理由\n[65] 电子水票*13L桶装水*10桶｜山泉瀑布(水源铺)｜¥—｜已售39｜规格:电子水票 · 13L 桶装水 × 10 桶｜卖点:批量预付、单桶锁价：折算¥49/桶，与单桶零售价一致，价值在于一次囤量、分批送水；电子票线上持有、随用随核销，适合手机用户\n[66] 纸质水票2本 100张｜山泉瀑布(水源铺)｜¥4900.00｜已售27｜规格:纸质水票 2 本 100 张（100 桶 13L）｜卖点:100桶大额档位，折算¥49/桶，主打企业/大家庭批量囤水；纸质票可留存可转赠，规则与单本水票一致\n[67] 电子水票*13L桶装水*20桶｜山泉瀑布(水源铺)｜¥—｜已售17｜规格:电子水票 · 13L 桶装水 × 20 桶｜卖点:与10桶电子票同规则，单桶折算同为¥49/桶，20桶为更大档位；电子票线上持有、随用随核销\n[68] 纸质水票1本 50张｜山泉瀑布(水源铺)｜¥2450.00｜已售14｜规格:纸质水票 1 本 50 张（50 桶 13L）｜卖点:纸质实体票，可留存、可转赠，适合家庭老人或企业采购；50张/本，折算¥49/桶，与零售同价\n[69] 专享3盒特价【恒寿堂红糖姜茶】20年老配方 配料只有红糖、生姜、阿胶，清润无渣 ⁬暖身暖心 ‭红润气色⁫⁢‪⁭｜江边驿站(驿铺·各地直采)｜¥39.90｜已售10｜规格:140g（10g × 14 条）/ 盒 × 3 盒｜卖点:「20年老配方」：用时间长度为配方可靠性背书；配料干净：配料只有红糖、生姜、阿胶三味，契合当下「配料表短」的消费心智\n[70] 纸质水票4本 200张｜山泉瀑布(水源铺)｜¥9800.00｜已售1｜规格:纸质水票 4 本 200 张（200 桶 13L）｜卖点:全店水票最大面额档位（200桶），折算¥49/桶；面向企业/单位用水的年度级采购场景\n[71] 纸质水票-13L桶装水*20桶｜山泉瀑布(水源铺)｜¥980.00｜已售0｜规格:纸质水票 - 13L 桶装水 × 20 桶｜卖点:与纸质水票共用同一票面设计：天然富硒、一次性桶拒绝二次循环、净含量13L；票面含陕西硒谷产业发展有限公司水票专用章、订水热线029-88199336\n[72] 孩视宝护眼落地灯｜街边杂货铺(日用+妆台)｜¥—｜已售—｜规格:儿童阅读学习专用落地灯｜卖点:场景锁定：儿童阅读学习专用；全光谱光源+面/环双光源结构，主打照度均匀、弱化手影\n\n【当前状态】用户正在地图页，可点牌匾进入各铺子；他点了你左下角的立绘来和你说话。";
 let chatHist=[], chatBusy=false;
@@ -606,19 +662,26 @@ const CHIPS=['送长辈的安康特产','办公室喝的茶','想吃点秦巴风
 document.getElementById('chatChips').innerHTML = CHIPS.map(c=>'<button data-q="'+c+'">'+c+'</button>').join('');
 
 function chatOpen(){
+  xyPush();
   document.getElementById('chatPanel').classList.add('on');
+  document.getElementById('chatMask').classList.add('on');
   if(!chatHist.length){
     const hi='你好呀，我是秦小娲。安康的好东西我都在行——想送人、想自己吃，或者随便听听，都可以问我。';
     addMsg('ai',hi); chatHist.push({role:'assistant',content:hi});
   }
   setTimeout(function(){ elIn.focus(); },400);
 }
-function chatClose(){ document.getElementById('chatPanel').classList.remove('on'); }
+function chatClose(){
+  document.getElementById('chatPanel').classList.remove('on');
+  document.getElementById('chatMask').classList.remove('on');
+}
+document.getElementById('chatMask').addEventListener('click',function(){ xyUiClose(chatClose); });
 
 /* 思考态：头像切挠头视频循环，结束切回静态图 */
 function setThink(on){
   var i=document.getElementById('cavImg'), v=document.getElementById('cavVid');
   document.getElementById('chatAv').classList.toggle('thinking',on);
+  if(window.__isIOS) return;   /* iOS 不播 WebM 思考视频，保持静态头像 */
   if(on){ i.classList.remove('on'); v.classList.add('on');
     try{ v.currentTime=0; var pp=v.play(); if(pp&&pp.catch)pp.catch(function(){}); }catch(e){} }
   else{ v.classList.remove('on'); i.classList.add('on'); try{ v.pause(); }catch(e){} }
@@ -643,9 +706,8 @@ async function send(text){
   let acc='';
   try{
     const res=await fetch(AI.url,{method:'POST',
-      headers:{'Content-Type':'application/json','Authorization':'Bearer '+AI.key},
-      body:JSON.stringify({model:AI.model,stream:true,temperature:.85,max_tokens:1100,
-        messages:[{role:'system',content:AI_SYS}].concat(chatHist.slice(-12))})});
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({system_prompt:AI_SYS,messages:chatHist.slice(-12)})});
     const reader=res.body.getReader(), dec=new TextDecoder(); let buf='';
     while(true){
       const r=await reader.read(); if(r.done) break;
@@ -700,7 +762,7 @@ elIn.addEventListener('keydown',function(e){ if(e.key==='Enter') send(elIn.value
 document.getElementById('chatChips').addEventListener('click',function(e){
   const b=e.target.closest('button'); if(b) send(b.getAttribute('data-q'));
 });
-document.getElementById('chatClose').addEventListener('click',chatClose);
+document.getElementById('chatClose').addEventListener('click',function(){ xyUiClose(chatClose); });
 document.getElementById('dhDockFigure').addEventListener('click',chatOpen);
 </script>
 </body>
