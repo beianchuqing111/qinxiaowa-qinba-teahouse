@@ -1,1 +1,80 @@
-IyDnoZLmuLjorrDnvZHnq5kKCuenpuW3tOehkui1hOa6kOS4juWcsOaWueWlveeJqeeahOenu+WKqOerr+WvvOiniOOAgeWGheWuueWxleekuuWSjOWTgeeJjOWumOe9keWvvOi0ree9keermeOAgumhueebruS7peaJq+eggei/m+WFpeeahOenu+WKqOerr+WNlemhteS9k+mqjOS4uuS4u++8jOeUqOaIt+S7juWcsOWbvuWcuuaZr+a1j+iniOWVhuWTge+8jOW5tumAmui/h+aVsOWtl+S6uuS6huino+WVhuWTgeS/oeaBr++8jOacgOe7iOi3s+i9rOWTgeeJjOWumOe9keOAggoKIyMg5b2T5YmN54mI5pysCgotIOenu+WKqOerr+S8mOWFiOeahOWNlemhtee9keerme+8jOWFpeWPo+S4uiBgaW5kZXguaHRtbGAKLSDnp6blt7TlnLDlm77lj4ogNyDkuKrlnLrmma/lhaXlj6MKLSDnp6blsI/lqLLmlbDlrZfkurrmrKLov47kuI7mgJ3ogIPop4bpopHntKDmnZAKLSA3MiDku7bllYblk4Hlm77niYfntKDmnZAKLSDlnLrmma/niYzljL7ntKDmnZAKLSDlvZPliY3kuqTku5jkuLrpnZnmgIHliY3nq6/ljp/lnovvvJvkuI3ljIXlkKvni6znq4vlkI7nq6/mnI3liqHjgIHmlK/ku5jjgIHorqLljZXmiJbotKblj7fns7vnu58KCiMjIOacrOWcsOmihOiniAoK5Y+v55u05o6l55So5rWP6KeI5Zmo5omT5byAIGBpbmRleC5odG1sYOOAguS5n+WPr+WcqOmhueebruebruW9leWQr+WKqOS7u+aEj+mdmeaAgeaWh+S7tuacjeWKoeWZqO+8jOS+i+Wmgu+8mgoKYGBgYmFzaApweXRob24gLW0gaHR0cC5zZXJ2ZXIgODAwMApgYGAKCueEtuWQjuiuv+mXriBgaHR0cDovL2xvY2FsaG9zdDo4MDAwYOOAggoKIyMg55uu5b2VCgpgYGB0ZXh0CnhpeW91amktd2Vic2l0ZS8K4pSc4pSA4pSAIGluZGV4Lmh0bWwK4pSU4pSA4pSAIGFzc2V0cy8KICAgIOKUnOKUgOKUgCBkaWdpdGFsSHVtYW4vICAjIOaVsOWtl+S6uuWktOWDj+S4juinhumikQogICAg4pSc4pSA4pSAIGdvb2RzLyAgICAgICAgICMg5ZWG5ZOB5Zu+54mH77yIMDEuanBnIC0gNzIuanBn77yJCiAgICDilJzilIDilIAgcGxhcXVlcy8gICAgICAgIyDlnLrmma/niYzljL7lm77niYcKICAgIOKUlOKUgOKUgCBtYXAuanBnICAgICAgICAjIOenpuW3tOWcsOWbvgpgYGAKCiMjIOmDqOe9sgoK5bCGIGB4aXlvdWppLXdlYnNpdGUvYCDkuIvnmoQgYGluZGV4Lmh0bWxgIOWSjCBgYXNzZXRzL2Ag5LiA5bm26YOo572y5Yiw6Z2Z5oCB572R56uZ5omY566h5pyN5Yqh77yM5bm25Li66YOo572y5Zyw5Z2A55Sf5oiQ5LqM57u056CB44CC56Gu6K6k5omA5pyJ5ZOB54mM6Lez6L2s6ZO+5o6l44CB5ZWG5ZOB6LWE5paZ44CB5Zu+54mH5o6I5p2D5Y+K5pWw5a2X5Lq657Sg5p2Q5L2/55So5o6I5p2D5ZCO5YaN5YWs5byA5Y+R5biD44CCCgojIyDlkI7nu63lr7nmjqUKCuacrOS7k+W6k+W9k+WJjeimhuebluS4uue9keermemdmeaAgea6kOeggeeJiOacrOOAguWQjue7reWPr+WcqOatpOWfuuehgOS4iuaOpeWFpeeLrOeriyBQeXRob24vRmFzdEFQSSDlkI7nq6/vvIzmj5DkvpvllYblk4HmlbDmja7jgIHnn6Xor4bmo4DntKLkuI7mlbDlrZfkurrpl67nrZQgQVBJ77yb5qih5Z6L5a+G6ZKl5bqU5LuF5L+d5a2Y5Zyo5pyN5Yqh56uv546v5aKD5Y+Y6YeP5Lit77yM5LiN5b6X5YaZ5YWl5YmN56uv5Luj56CB44CCCgojIyDniYjmnYPkuI7otYTmlpnmoLjpqowKCuWVhuWTgeWGheWuueOAgeWTgeeJjOagh+ivhuOAgeWVhuWTgeWbvueJh+OAgeajgOa1iy/muq/mupDkv6Hmga/jgIHlrpjnvZHpk77mjqXlj4rmlbDlrZfkurrntKDmnZDlupTnlLHpobnnm67mlrnnoa7orqTmjojmnYPlkozlh4bnoa7mgKfjgILmnKzpobnnm67kuI3mnoTmiJDljLvnlpflu7rorq7vvIzkuZ/kuI3lupTkvb/nlKjmnKrnu4/or4Hlrp7nmoTkv53lgaXmiJbmsrvnlpflip/mlYjlrqPkvKDjgIIK
+# 硒游记本地版
+
+当前版本包含：
+
+- 原有硒游记单页导览网站和数字人对话界面
+- FastAPI 对话代理，API Key 仅从后端环境变量读取
+- PostgreSQL 商品库
+- 商品公开接口和商品详情接口
+- 商品管理页面：新增、编辑、上下架、上传图片
+- 72 件商品初始化导入能力
+- 本机商品图片静态访问
+
+## 目录
+
+- `app.py`：FastAPI 后端、商品 API、图片上传和对话代理
+- `admin.html`：商品管理页面
+- `xiyouji-website/`：原有网站和素材
+- `tests/`：后端测试
+- `.env.example`：环境变量模板
+
+## 本地配置
+
+复制 `.env.example` 为 `.env`，填写本机配置：
+
+```env
+DEEPSEEK_API_KEY=your-deepseek-api-key
+DATABASE_URL=postgresql://postgres:your-password@127.0.0.1:5432/xiyouji
+ADMIN_TOKEN=replace-with-a-long-random-local-token
+```
+
+`.env` 不应提交到 GitHub。
+
+## 安装依赖
+
+```bash
+uv sync
+```
+
+## 启动后端
+
+```bash
+uv run uvicorn app:app --host 127.0.0.1 --port 8001
+```
+
+后端地址：`http://127.0.0.1:8001`
+
+## 启动前端
+
+在另一个终端执行：
+
+```bash
+cd xiyouji-website
+python -m http.server 8000 --bind 127.0.0.1
+```
+
+前台地址：`http://127.0.0.1:8000`
+
+## 商品管理
+
+打开：`http://127.0.0.1:8001/admin`
+
+输入 `.env` 中的 `ADMIN_TOKEN` 后，可以：
+
+- 导入原有 72 件商品
+- 新增商品
+- 编辑商品
+- 上传 JPG、PNG、WebP 图片
+- 上架或下架商品
+
+公开商品接口：
+
+- `GET /api/products`
+- `GET /api/products/{id}`
+- `GET /api/scenes`
+
+## 测试
+
+```bash
+uv run pytest -q
+```
