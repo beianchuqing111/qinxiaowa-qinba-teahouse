@@ -1,0 +1,182 @@
+{
+  "_meta": {
+    "schema_version": "1.0",
+    "note": "首期商品 / 文化资料库。数据由内容负责人提供并核验后再录入，本文件中的示例值仅用于前后端联调与演示。",
+    "rules": [
+      "review_status 不是 approved 的商品不会进入推荐池",
+      "只有 verified=true 的字段才会出现在访客可见结果与对白中",
+      "missing_facts 用于明确告诉访客'资料未提供'，禁止由模型编造",
+      "shop_link.enabled=true 且域名在 SHOP_LINK_ALLOWED_HOSTS 白名单内，才允许跳转"
+    ],
+    "updated_at": "2026-10-02"
+  },
+  "products": [
+    {
+      "id": "QBT-001",
+      "name": "紫阳富硒毛尖",
+      "subtitle": "安康紫阳 · 明前绿茶 · 罐装 100g",
+      "category": "绿茶",
+      "review_status": "approved",
+      "price": {
+        "amount_cents": 12800,
+        "currency": "CNY",
+        "unit": "罐",
+        "verified": true,
+        "note": "示例价，正式演示前需按店铺实际售价核验"
+      },
+      "specs": [
+        { "label": "净含量", "value": "100g", "verified": true },
+        { "label": "形态", "value": "散茶 · 罐装", "verified": true },
+        { "label": "茶类", "value": "绿茶", "verified": true },
+        { "label": "储存方式", "value": "密封避光，阴凉干燥处", "verified": true }
+      ],
+      "images": [
+        "https://example-cdn.local/qbt-001/main.jpg",
+        "https://example-cdn.local/qbt-001/soup.jpg"
+      ],
+      "culture_card": {
+        "title": "紫阳茶 · 山与水的记忆",
+        "origin": "陕西省安康市紫阳县",
+        "origin_verified": true,
+        "paragraphs": [
+          "紫阳种茶的历史很长，境内的茶山多分布在汉江两岸的中低山地带，云雾多、日照柔，茶树发芽偏晚而芽叶肥厚。",
+          "当地茶农至今保留着清明前后手工采摘的习惯，一芽一叶初展时下树，当日摊晾当日杀青，做成外形细紧的毛尖。",
+          "在安康，茶不只是饮品。逢年过节、走亲访友，一罐本地茶是最常见也最体面的心意。"
+        ],
+        "facts": [
+          "产自陕西省安康市紫阳县",
+          "清明前后手工采摘，一芽一叶初展",
+          "条索细紧、茶汤清澈，入口偏清淡回甘"
+        ],
+        "verification_note": "以上为产地文化描述，未包含具体成分含量与检测结论；对外表述不得增加'富硒含量数值''认证资质'等未经核验的内容。",
+        "sources": ["《秦小娲的秦巴茶舍_一页方案》讨论稿 V1.0", "内容负责人提供的产地文化说明（示例）"]
+      },
+      "source": {
+        "material_source": "内容负责人提供的商品图与产地文化说明（示例占位）",
+        "reviewer": "待填写",
+        "reviewed_at": "2026-10-02",
+        "notes": "价格、图片、文化卡已录入；图片为占位地址，正式联调时替换为真实 CDN 地址"
+      },
+      "shop_link": {
+        "platform": "淘宝",
+        "url": null,
+        "enabled": false,
+        "label": null
+      },
+      "tags": {
+        "scenes": ["self", "ankang_intro", "gift"],
+        "recipients": ["self", "elder", "parent", "friend", "partner"],
+        "preferences": ["green_tea", "light", "healthy", "beginner", "portable"]
+      },
+      "missing_facts": [
+        "检测报告与成分含量数据未提供，不对外展示",
+        "线上店铺链接未接入，仅展示资料"
+      ],
+      "sibling_ids": ["QBT-002"]
+    },
+    {
+      "id": "QBT-002",
+      "name": "安康富硒红茶礼盒",
+      "subtitle": "安康平利 · 双罐礼盒装 200g",
+      "category": "红茶",
+      "review_status": "approved",
+      "price": {
+        "amount_cents": 26800,
+        "currency": "CNY",
+        "unit": "盒",
+        "verified": true,
+        "note": "示例价，正式演示前需按店铺实际售价核验"
+      },
+      "specs": [
+        { "label": "净含量", "value": "200g（100g × 2 罐）", "verified": true },
+        { "label": "包装", "value": "硬纸礼盒 · 双罐", "verified": true },
+        { "label": "茶类", "value": "红茶", "verified": true },
+        { "label": "配送", "value": "礼盒含手提袋，适合直接送人", "verified": true }
+      ],
+      "images": [
+        "https://example-cdn.local/qbt-002/main.jpg",
+        "https://example-cdn.local/qbt-002/box.jpg"
+      ],
+      "culture_card": {
+        "title": "安康红茶 · 一份拿得出手的本地心意",
+        "origin": null,
+        "origin_verified": false,
+        "paragraphs": [
+          "安康在秦巴山区之间，汉江横贯全境，山高谷深，茶园大多在海拔较高的坡地上。",
+          "红茶发酵充分，滋味比绿茶更醇厚，冷天或者配着点心喝都很合适，也更容易被不常喝茶的人接受。",
+          "礼盒装带手提袋，拜访长辈、走亲访友可以直接拎着走，不必再另外包装。"
+        ],
+        "facts": [
+          "双罐装，合计 200g",
+          "礼盒自带手提袋，适合直接送人",
+          "口感醇厚，适合不常喝茶的人也容易接受"
+        ],
+        "verification_note": "具体茶园产地信息尚未提供，对外不得指定具体乡镇或海拔数值。",
+        "sources": ["《秦小娲的秦巴茶舍_一页方案》讨论稿 V1.0", "内容负责人提供的商品说明（示例）"]
+      },
+      "source": {
+        "material_source": "内容负责人提供的商品图与说明（示例占位）",
+        "reviewer": "待填写",
+        "reviewed_at": "2026-10-02",
+        "notes": "产地明细未提供，已在 culture_card.origin 标记为未核验；店铺链接为占位地址"
+      },
+      "shop_link": {
+        "platform": "淘宝",
+        "url": "https://item.taobao.com/item.htm?id=000000000000",
+        "enabled": true,
+        "label": "前往淘宝查看同款"
+      },
+      "tags": {
+        "scenes": ["gift", "ankang_intro"],
+        "recipients": ["elder", "parent", "client", "friend", "partner"],
+        "preferences": ["black_tea", "rich", "sweet_aroma", "gift_ready", "healthy"]
+      },
+      "missing_facts": [
+        "具体茶园产地明细未提供，不指定具体乡镇",
+        "检测报告与成分含量数据未提供，不对外展示"
+      ],
+      "sibling_ids": ["QBT-001"]
+    },
+    {
+      "id": "QBT-003",
+      "name": "岚皋富硒苦荞茶",
+      "subtitle": "安康岚皋 · 罐装 250g（资料审核中）",
+      "category": "代用茶",
+      "review_status": "pending_review",
+      "price": {
+        "amount_cents": 6800,
+        "currency": "CNY",
+        "unit": "罐",
+        "verified": false,
+        "note": "价格待核验"
+      },
+      "specs": [
+        { "label": "净含量", "value": "250g", "verified": false }
+      ],
+      "images": [],
+      "culture_card": {
+        "title": "待补充",
+        "origin": null,
+        "origin_verified": false,
+        "paragraphs": [],
+        "facts": [],
+        "verification_note": "资料未完成核验，禁止对外展示",
+        "sources": []
+      },
+      "source": {
+        "material_source": "待内容负责人补充",
+        "reviewer": null,
+        "reviewed_at": null,
+        "notes": "此条用于验证'未过审商品不进入推荐池'，正式演示时不会出现"
+      },
+      "shop_link": { "platform": "淘宝", "url": null, "enabled": false, "label": null },
+      "tags": {
+        "scenes": ["self", "ankang_intro"],
+        "recipients": ["self"],
+        "preferences": ["light"]
+      },
+      "missing_facts": ["商品资料整体未完成核验"],
+      "sibling_ids": []
+    }
+  ]
+}
