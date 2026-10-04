@@ -4,3 +4,7 @@ __pycache__/
 .env
 uv.lock
 uploads/
+*.bak
+tunnel/*.log
+tunnel/current-url.txt
+tunnel/admin-url.txt

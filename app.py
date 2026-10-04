@@ -142,6 +142,11 @@ async def get_product(product_id: int, db=Depends(get_db)):
 def admin_page():
     return (BASE / 'admin.html').read_text(encoding='utf-8')
 
+@app.get('/api/admin/session')
+def admin_session(x_admin_token: str | None = Header(default=None)):
+    admin_auth(x_admin_token)
+    return {'authenticated': True}
+
 @app.post('/api/admin/products')
 async def create_product(payload: ProductInput, x_admin_token: str | None = Header(default=None), db=Depends(get_db)):
     admin_auth(x_admin_token)
